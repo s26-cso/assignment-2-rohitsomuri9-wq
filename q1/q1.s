@@ -1,21 +1,17 @@
 .globl make_node
 make_node:
-
 addi sp, sp, -16            # sp = sp - 16
 sd x1, 8(sp)                # save x1
-
-addi x5, x10, 0             # x5 = val
-
+sd x10, 0(sp)               # save val on stack
 addi x10, x0, 24            # x10 = 24
 call malloc                 # malloc
-
+ld x5, 0(sp)                # load val from stack
 sw x5, 0(x10)               # store val
 sd x0, 8(x10)               # left = 0
 sd x0, 16(x10)              # right = 0
-
 ld x1, 8(sp)                # load x1
 addi sp, sp, 16             # sp = sp + 16
-ret                         # return
+ret                         # return                   
 
 
 
